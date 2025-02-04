@@ -15,7 +15,7 @@ function Tafseir() {
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
     const handleSurahChange = (e: ChangeEvent<HTMLSelectElement>) => {
-        setAudioUrl(e.target.selectedOptions[0].dataset.server);
+        setAudioUrl(e.target.selectedOptions[0].dataset.server ?? null);
         if (audioRef.current) {
             audioRef.current.load();
             audioRef.current.play();

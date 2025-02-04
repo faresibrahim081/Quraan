@@ -83,7 +83,6 @@ function Banner() {
       audioRef.current.play();
     }
   };
-
   return (
     <section className="absolute inset-x-0 bottom-[-5rem] shadow-lg text-right w-[70%] mx-auto rounded-lg p-11 z-10 bg-white">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -110,9 +109,8 @@ function Banner() {
           <select
             onChange={(e) => {
               setSelectedMoshaf({
-                surah_list:
-                  e.target.selectedOptions[0].dataset.surah.split(","),
-                server: e.target.selectedOptions[0].dataset.server,
+                surah_list: e.target.selectedOptions[0]?.dataset.surah?.split(",") || [],
+                server: e.target.selectedOptions[0].dataset.server || "",
               });
             }}
             className="text-right p-2 focus:outline-none border border-gray-300 rounded-md"
