@@ -1,61 +1,15 @@
 "use client";
-import { useQuery } from "@tanstack/react-query";
-import { useRef, useState, ChangeEvent } from "react";
+import { useFetchReciters, useFetchRewaya, useFetchSelectSurah } from "@/app/_utils/api/fetchQuran";
+import { useAudio } from "@/app/Context/AudioContext";
+import { useState, ChangeEvent } from "react";
 
-// Define the types for the API response data
-interface Reciter {
-  id: string;
-  name: string;
-}
-
-interface Rewaya {
-  id: string;
-  name: string;
-  surah_list: string[];
-  server: string;
-}
-
-interface Surah {
-  id: number;
-  name: string;
-}
-
-interface RecitersData {
-  reciters: Reciter[];
-}
-
-interface RewayaData {
-  reciters: {
-    moshaf: Rewaya[];
-  }[];
-}
-
-interface SoraData {
-  suwar: Surah[];
-}
-
-const apiUrl = "https://www.mp3quran.net/api/v3";
 
 function Banner() {
-  const { data: recitersData, isFetching: recitersStaus } = useQuery<RecitersData>({
-    queryKey: ["reciters"],
-    queryFn: async () => {
-      const response = await fetch(`${apiUrl}/reciters?language=ar`);
-      return response.json();
-    },
-  });
+  const { playAudio, stopAudio, setCurrentAudio, audioRef } = useAudio();
+  const { data: recitersData, isFetching: recitersFetching } = useFetchReciters();
 
   const [rewaya, setRewaya] = useState<string | null>(null);
-
-  const { data: rewayaData, isFetching: rewayaStaus } = useQuery<RewayaData>({
-    queryKey: ["rewaya", rewaya],
-    queryFn: async () => {
-      const response = await fetch(
-        `${apiUrl}/reciters?language=ar&reciter=${rewaya}`
-      );
-      return response.json();
-    },
-  });
+  const { data: rewayaData, isFetching: rewayaFetching } = useFetchRewaya(rewaya)
 
   const [selectedMoshaf, setSelectedMoshaf] = useState<{
     surah_list: string[];
@@ -65,26 +19,24 @@ function Banner() {
     server: "",
   });
 
-  const { data: soraData } = useQuery<SoraData>({
-    queryKey: ["surah"],
-    queryFn: async () => {
-      const response = await fetch(`${apiUrl}/suwar`);
-      return response.json();
-    },
-  });
+  const { data: soraData, isFetching: soraFetching } = useFetchSelectSurah();
 
-  const [audioUrl, setAudioUrl] = useState<string | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [newAudioUrl, setnewAudioUrl] = useState<string | null>(null);
 
   const handleSurahChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setAudioUrl(event.target.value);
-    if (audioRef.current) {
-      audioRef.current.load();
-      audioRef.current.play();
+    const selectedAudioUrl = event.target.value || "";
+
+    if (selectedAudioUrl) {
+      stopAudio();
+      setnewAudioUrl(selectedAudioUrl);
+      setCurrentAudio(selectedAudioUrl);
+      playAudio(selectedAudioUrl);
+    } else {
+      stopAudio();
     }
   };
   return (
-    <section className="absolute inset-x-0 bottom-[-5rem] shadow-lg text-right w-[70%] mx-auto rounded-lg p-11 z-10 bg-white">
+    <section className="shadow-lg text-right w-[70%] mb-[2rem] mx-auto rounded-lg p-11 z-10 bg-white">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <div className="flex flex-col gap-3">
           <label className="text-lg font-semibold">اختر القارئ</label>
@@ -92,16 +44,13 @@ function Banner() {
             onChange={(e) => setRewaya(e.target.value)}
             className="text-right p-2 focus:outline-none border border-gray-300 rounded-md"
           >
-            <option>اختر القارئ</option>
-            {recitersData?.reciters.map((reciter) =>
-              !recitersStaus ? (
-                <option key={reciter.id} value={reciter.id}>
-                  {reciter.name}
-                </option>
-              ) : (
-                <option key={reciter.id}>جاري التحميل</option>
-              )
-            )}
+            {/* <option>اختر القارئ</option> */}
+            {recitersData?.reciters.map((reciter: { id: number, name: string }) => (
+              <option key={reciter.id} value={reciter.id}>
+                {reciter.name}
+              </option>
+            ))}
+            {recitersFetching && <option>جاري التحميل...</option>}
           </select>
         </div>
         <div className="flex flex-col gap-3">
@@ -116,20 +65,17 @@ function Banner() {
             className="text-right p-2 focus:outline-none border border-gray-300 rounded-md"
           >
             <option>اختر الرواية</option>
-            {rewayaData?.reciters[0].moshaf.map((rewaya) =>
-              !rewayaStaus ? (
-                <option
-                  key={rewaya.id}
-                  data-surah={rewaya.surah_list}
-                  data-server={rewaya.server}
-                  value={rewaya.id}
-                >
-                  {rewaya.name}
-                </option>
-              ) : (
-                <option key={rewaya.id}>جاري التحميل</option>
-              )
-            )}
+            {rewayaData?.reciters[0].moshaf.map((rewaya) => (
+              <option
+                key={rewaya.id}
+                data-surah={rewaya.surah_list}
+                data-server={rewaya.server}
+                value={rewaya.id}
+              >
+                {rewaya.name}
+              </option>
+            ))}
+            {rewayaFetching && <option>جاري التحميل...</option>}
           </select>
         </div>
         <div className="flex flex-col gap-3">
@@ -142,8 +88,7 @@ function Banner() {
             {selectedMoshaf.surah_list.map((surah) =>
               soraData?.suwar.map((sora) => {
                 if (sora.id == parseInt(surah)) {
-                  const formattedId =
-                    sora.id.toString().padStart(3, "0") || "000";
+                  const formattedId = sora.id.toString().padStart(3, "0") || "000";
                   return (
                     <option
                       key={sora.name}
@@ -155,12 +100,13 @@ function Banner() {
                 }
               })
             )}
+            {soraFetching && <option>جاري التحميل...</option>}
           </select>
         </div>
       </div>
       <audio ref={audioRef} controls autoPlay className="w-full my-5">
-        <source src={audioUrl || ""} type="audio/ogg" />
-        <source src={audioUrl || ""} type="audio/mpeg" />
+        <source src={newAudioUrl || ""} type="audio/ogg" />
+        <source src={newAudioUrl || ""} type="audio/mpeg" />
         المتصفح الخاص بك لا يدعم تشغيل الصوت
       </audio>
     </section>

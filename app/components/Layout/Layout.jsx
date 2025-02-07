@@ -4,9 +4,9 @@ function Layout() {
   return (
     <section
       style={{ backgroundImage: `url(/images/bg-quran.jpg)` }}
-      className={`relative bg-cover bg-center bg-no-repeat`}
+      className={`flex flex-col bg-cover bg-center bg-no-repeat`}
     >
-      <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-[70vh] tems-center lg:px-8">
+      <div className=" mx-auto pt-[8rem] pb-[3rem] text-center">
         <div className="max-w-xl mx-auto">
           <h1 className="text-3xl font-extrabold text-white sm:text-5xl">
             {" "}

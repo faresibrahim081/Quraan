@@ -2,11 +2,15 @@
 import Link from "next/link";
 import { useRef } from "react";
 import Hls from "hls.js";
+import { useAudio } from "../Context/AudioContext";
 
 function Video() {
+    const { stopAudio } = useAudio();
+
     const videoRef = useRef<HTMLVideoElement | null>(null);
 
     const playVideo = (url: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+        stopAudio();
         e.preventDefault();
         if (videoRef.current) {
             const video = videoRef.current;
@@ -25,7 +29,6 @@ function Video() {
             }
         }
     };
-
     return (
         <div style={{ backgroundImage: `url(/images/bg-quran-2.jpg)` }}
             className="mt-[10rem] relative bg-cover bg-center bg-no-repeat py-10">

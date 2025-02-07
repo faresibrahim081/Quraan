@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
-import { El_Messiri, Geist_Mono } from "next/font/google";
+import { Amiri, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Navbar/Nav";
 import ReactQueryProvider from "./ReactQueryProvider";
 import Footer from "./components/Footer/Footer";
+import Head from "next/head";
+import ScrollTop from "./components/ScrollTop/ScrollTop";
+import { AudioProvider } from "./Context/AudioContext";
 
-const elMessiriFont = El_Messiri({
-  variable: "--font-el-messiri",
+const quranFont = Amiri({
+  variable: "--font-quran",
   subsets: ["arabic"],
-  weight: ["400", "700"], // يمكنك إضافة المزيد من الأوزان
+  weight: ["400", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -17,8 +20,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "القران الكريم",
-  description: "القران الكريم بقراءات متعددة",
+  title: "القرآن الكريم",
+  description: "القرآن الكريم بقراءات متعددة",
   manifest: "/manifest.json",
   icons: {
     icon: "/favicon.png",
@@ -40,13 +43,19 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body
-        className={`${elMessiriFont.variable} ${geistMono.variable} antialiased`}
+        className={`flex flex-col min-h-screen ${quranFont.variable} ${geistMono.variable} antialiased`}
       >
+        <Head>
+          <link rel="icon" href="/favicon.png" sizes="any" />
+        </Head>
+        <Nav />
         <ReactQueryProvider>
-          <Nav />
-          {children}
-          <Footer />
+          <AudioProvider>
+            <main className="flex-grow">{children}</main>
+            <ScrollTop />
+          </AudioProvider>
         </ReactQueryProvider>
+        <Footer />
       </body>
     </html>
   );

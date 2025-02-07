@@ -26,7 +26,7 @@ function Nav() {
                 <li>
                   <a
                     className="text-white font-bold text-xl  transition hover:text-white"
-                    href="/#sowar"
+                    href="/Sowar"
                   >
                     {" "}
                     استعراض السور{" "}
@@ -36,7 +36,7 @@ function Nav() {
                 <li>
                   <a
                     className="text-white font-bold text-xl transition hover:text-white"
-                    href="/#video"
+                    href="/Video"
                   >
                     {" "}
                     البث المباشر{" "}
@@ -46,7 +46,7 @@ function Nav() {
                 <li>
                   <a
                     className="text-white font-bold text-xl transition hover:text-white"
-                    href="/#tafseer"
+                    href="/Tafseir"
                   >
                     {" "}
                     التفسير{" "}
