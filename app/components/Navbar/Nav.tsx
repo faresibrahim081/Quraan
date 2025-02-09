@@ -10,13 +10,23 @@ function Nav() {
   const menuRef = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        !(event.target as HTMLElement).closest("a")
+      ) {
         setToggle(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+  const links = [
+    { path: "/Sowar", label: "فهرس السور" },
+    { path: "/Video", label: "البث المباشر" },
+    { path: "/Tafseir", label: "تفسير الطبري" },
+
+  ];
   return (
     <header className="text-white bg-[#32d8b78a] absolute top-0 left-0 right-0 z-50 backdrop-blur-lg">
       <div className="mx-auto w-[80%]">
@@ -42,49 +52,22 @@ function Nav() {
               />
             </div>
             {toggle && (
-              <ul
+              <div
 
                 className="md:hidden absolute top-[4.5rem] left-[1rem] p-3 w-[320px] bg-teal-500 flex flex-col gap-6 text-sm"
               >
-                <li className="hover:bg-teal-600 hover:pr-1 hover:font-bold transition">
-                  <Link
-                    href="/Sowar"
+                {links.map((link, i) => (
+                  <Link href={link.path} key={i} className="hover:bg-teal-600 text-xl hover:pr-1 text-white  hover:font-bold transition"
                     onClick={() => {
-                      setToggle(false);
+                      setTimeout(() => {
+                        setToggle(false);
+                      }, 100);
                     }}
-                    className="text-white text-2xl transition hover:text-white"
                   >
-                    {" "}
-                    استعراض السور{" "}
+                    {link.label}
                   </Link>
-                </li>
-
-                <li className="hover:bg-teal-600 hover:pr-1 hover:font-bold transition">
-                  <Link
-                    href="/Video"
-                    onClick={() => {
-                      setToggle(false);
-                    }}
-                    className="text-white text-2xl transition hover:text-white"
-                  >
-                    {" "}
-                    البث المباشر{" "}
-                  </Link>
-                </li>
-
-                <li className="hover:bg-teal-600 hover:pr-1 hover:font-bold transition">
-                  <Link
-                    href="/Tafseir"
-                    onClick={() => {
-                      setToggle(false);
-                    }}
-                    className="text-white text-2xl transition hover:text-white"
-                  >
-                    {" "}
-                    التفسير{" "}
-                  </Link>
-                </li>
-              </ul>
+                ))}
+              </div>
             )}
             <ul className="hidden md:flex items-center gap-6 text-sm">
               <li>
