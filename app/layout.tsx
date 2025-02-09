@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Nav from "./components/Navbar/Nav";
 import ReactQueryProvider from "./ReactQueryProvider";
 import Footer from "./components/Footer/Footer";
 import Head from "next/head";
 import ScrollTop from "./components/ScrollTop/ScrollTop";
 import { AudioProvider } from "./Context/AudioContext";
+import Nav from "./components/Navbar/Nav";
 
 
 export const metadata: Metadata = {

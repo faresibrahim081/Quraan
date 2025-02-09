@@ -12,7 +12,6 @@ interface Surah {
     verses_count: number;
     revelation_place: { ar: string };
 }
-
 const Surah = () => {
     const params = useParams();
 

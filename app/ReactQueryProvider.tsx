@@ -9,7 +9,10 @@ export default function ReactQueryProvider({ children }: Readonly<{
     const [queryClient] = useState(() => new QueryClient({
         defaultOptions: {
             queries: {
+                refetchInterval: false,
+                refetchOnReconnect: true,
                 refetchOnWindowFocus: false,
+                retry: 2,
             }
         }
     }));

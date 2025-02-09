@@ -16,9 +16,9 @@ const Sowar = () => {
                 فهرس قرائة السور
             </h1>
             <div dir="ltr">
-                <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 h-[80vh] px-4 overflow-y-auto md:grid-cols-3 lg:grid-cols-4">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 h-[80vh] px-4 overflow-y-auto md:grid-cols-3 lg:grid-cols-4">
                     {data.result.map((surah: { number: number; name: { ar: string } }) => (
-                        <li key={surah.number}>
+                        <div dir="rtl" key={surah.number}>
                             <Link
                                 href={`/Sowar/${surah.number}`}
                                 className="block bg-white shadow-lg rounded-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border border-gray-200"
@@ -27,9 +27,9 @@ const Sowar = () => {
                                     {surah.number}. {surah.name.ar}
                                 </h2>
                             </Link>
-                        </li>
+                        </div>
                     ))}
-                </ul>
+                </div>
             </div>
         </section>
     );

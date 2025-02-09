@@ -30,7 +30,7 @@ function Video() {
         }
     };
     return (
-        <div style={{ backgroundImage: `url(/images/bg-quran-2.jpg)` }}
+        <div style={{ backgroundImage: `url(/images/bg-quran-2.webp)` }}
             className="mt-[10rem] relative bg-cover bg-center bg-no-repeat py-10">
             <div id="video" className="w-[80%] mx-auto">
                 <div className="text-center mb-6">

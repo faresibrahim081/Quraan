@@ -3,7 +3,7 @@ import Banner from "./Banner";
 function Layout() {
   return (
     <section
-      style={{ backgroundImage: `url(/images/bg-quran.jpg)` }}
+      style={{ backgroundImage: `url(/images/bg-quran.webp)` }}
       className={`flex flex-col bg-cover bg-center bg-no-repeat`}
     >
       <div className=" mx-auto pt-[8rem] pb-[3rem] text-center">
