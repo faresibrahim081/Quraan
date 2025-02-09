@@ -39,12 +39,12 @@ function Banner() {
     <section className="shadow-lg text-right w-[70%] mb-[2rem] mx-auto rounded-lg p-11 z-10 bg-white">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <div className="flex flex-col gap-3">
-          <label className="text-lg font-semibold">اختر القارئ</label>
+          <label className="text-xl font-semibold">اختر القارئ</label>
           <select
             onChange={(e) => setRewaya(e.target.value)}
-            className="text-right p-2 focus:outline-none border border-gray-300 rounded-md"
+            className="text-right text-lg p-2 focus:outline-none border border-gray-300 rounded-md"
           >
-            {/* <option>اختر القارئ</option> */}
+            <option>اختر القارئ</option>
             {recitersData?.reciters.map((reciter: { id: number, name: string }) => (
               <option key={reciter.id} value={reciter.id}>
                 {reciter.name}
@@ -54,7 +54,7 @@ function Banner() {
           </select>
         </div>
         <div className="flex flex-col gap-3">
-          <label className="text-lg font-semibold">اختر الرواية</label>
+          <label className="text-xl font-semibold">اختر الرواية</label>
           <select
             onChange={(e) => {
               setSelectedMoshaf({
@@ -62,7 +62,7 @@ function Banner() {
                 server: e.target.selectedOptions[0].dataset.server || "",
               });
             }}
-            className="text-right p-2 focus:outline-none border border-gray-300 rounded-md"
+            className="text-right text-lg p-2 focus:outline-none border border-gray-300 rounded-md"
           >
             <option>اختر الرواية</option>
             {rewayaData?.reciters[0].moshaf.map((rewaya) => (
@@ -79,10 +79,10 @@ function Banner() {
           </select>
         </div>
         <div className="flex flex-col gap-3">
-          <label className="text-lg font-semibold">اختر السورة</label>
+          <label className="text-xl font-semibold">اختر السورة</label>
           <select
             onChange={handleSurahChange}
-            className="text-right p-2 focus:outline-none border border-gray-300 rounded-md"
+            className="text-right text-lg p-2 focus:outline-none border border-gray-300 rounded-md"
           >
             <option>اختر السورة</option>
             {selectedMoshaf.surah_list.map((surah) =>
@@ -104,7 +104,7 @@ function Banner() {
           </select>
         </div>
       </div>
-      <audio ref={audioRef} controls autoPlay className="w-full my-5">
+      <audio ref={audioRef} controls autoPlay className="w-full mt-5">
         <source src={newAudioUrl || ""} type="audio/ogg" />
         <source src={newAudioUrl || ""} type="audio/mpeg" />
         المتصفح الخاص بك لا يدعم تشغيل الصوت
