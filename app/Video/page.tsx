@@ -37,13 +37,13 @@ function Video() {
                     <h1 className="text-3xl font-extrabold text-gray-800 sm:text-5xl">اختر قناة البث المباشر</h1>
                     <div className="flex justify-center items-center gap-4 mt-8">
                         <Link
-                            className="inline-block rounded-md border border-teal-600 bg-teal-600 px-12 py-3 text-md font-bold text-white hover:bg-transparent hover:text-teal-600 focus:ring-3 focus:outline-hidden"
+                            className="inline-block rounded-md border border-teal-600 bg-teal-600 px-8 py-3 text-lg text-white hover:bg-transparent hover:text-teal-600 focus:ring-3 focus:outline-hidden"
                             href="" onClick={playVideo('https://win.holol.com/live/quran/playlist.m3u8')}
                         >
                             قناة القران الكريم
                         </Link>
                         <Link
-                            className="inline-block rounded-md border border-teal-600 px-12 py-3 text-md font-bold text-teal-600 hover:bg-teal-600 hover:text-white focus:ring-3 focus:outline-hidden"
+                            className="inline-block rounded-md border border-teal-600 px-8 py-3 text-lg text-gray-800 hover:bg-teal-600 hover:text-white focus:ring-3 focus:outline-hidden"
                             href="" onClick={playVideo('https://win.holol.com/live/sunnah/playlist.m3u8')}
                         >
                             قناة السنة النبوية
