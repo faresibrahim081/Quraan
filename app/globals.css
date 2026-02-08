@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Hafs";
+  src: url("/fonts/conv_original-hafs.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  background: #e6e6e6;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+html {
+  scrollbar-color: #0d9488 #d8d5d5;
+}
+
+@keyframes dropdown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.90);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+}
+
+.animate-dropdown {
+  animation: dropdown 0.5s ease-out;
+}
