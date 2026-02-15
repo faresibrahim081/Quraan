@@ -16,14 +16,14 @@ const Sowar = () => {
                 فهرس قرائة السور
             </h1>
             <div dir="ltr">
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 h-[80vh] px-4 overflow-y-auto md:grid-cols-3 lg:grid-cols-4">
+                <div className="grid grid-cols-2 gap-2 md:gap-6 sm:grid-cols-2 h-[80vh] px-4 overflow-y-auto md:grid-cols-3 lg:grid-cols-4">
                     {data.result.map((surah: { number: number; name: { ar: string } }) => (
                         <div dir="rtl" key={surah.number}>
                             <Link
                                 href={`/Sowar/${surah.number}`}
                                 className="block bg-white shadow-lg rounded-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border border-gray-200"
                             >
-                                <h2 className="text-2xl font-extrabold text-gray-800">
+                                <h2 className="text-2xl font-extrabold whitespace-nowrap text-gray-800">
                                     {surah.number}. {surah.name.ar}
                                 </h2>
                             </Link>

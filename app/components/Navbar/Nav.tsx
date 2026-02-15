@@ -24,13 +24,13 @@ function Nav() {
   const links = [
     { path: "/Sowar", label: "فهرس السور" },
     { path: "/Video", label: "البث المباشر" },
-    { path: "/Tafseir", label: "تفسير الطبري" },
+    { path: "/azkar", label: "الازكار" },
 
   ];
   return (
     <header className="text-white bg-[#32d8b78a] absolute top-0 left-0 right-0 z-50 backdrop-blur-lg">
-      <div className="mx-auto w-[80%]">
-        <div className="flex h-[75px] items-center justify-between">
+      <div className="px-3 md:mx-auto md:w-[90%]">
+        <div className="flex flex-row h-[75px] items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
             <Link className="block text-teal-600" href="/">
               <span className="sr-only">Home</span>
@@ -53,15 +53,27 @@ function Nav() {
             </div>
             {toggle && (
               <div
-
-                className="md:hidden absolute top-[4.5rem] left-[1rem] p-3 w-[320px] bg-teal-500 flex flex-col gap-6 text-sm"
+                className="
+                  md:hidden absolute top-[4rem] left-[1rem] w-[70%]
+                  bg-white/95 backdrop-blur-md
+                  rounded-3xl rounded-tl-none rounded-br-none shadow-xl border border-gray-200
+                  p-4 flex flex-col gap-3
+                  animate-dropdown
+                  z-50
+                "
               >
                 {links.map((link, i) => (
-                  <Link href={link.path} key={i} className="hover:bg-teal-600 text-xl hover:pr-1 text-white  hover:font-bold transition"
+                  <Link
+                    href={link.path}
+                    key={i}
+                    className="
+                      text-lg font-medium text-gray-800
+                      px-4 py-3 rounded-xl
+                      hover:bg-teal-500 hover:text-white
+                      transition-all duration-200
+                    "
                     onClick={() => {
-                      setTimeout(() => {
-                        setToggle(false);
-                      }, 100);
+                      setTimeout(() => setToggle(false), 150);
                     }}
                   >
                     {link.label}
@@ -69,6 +81,7 @@ function Nav() {
                 ))}
               </div>
             )}
+
             <ul className="hidden md:flex items-center gap-6 text-sm">
               <li>
                 <Link
@@ -93,10 +106,10 @@ function Nav() {
               <li>
                 <Link
                   className="text-white text-2xl transition hover:text-white"
-                  href="/Tafseir"
+                  href="/azkar"
                 >
                   {" "}
-                  التفسير{" "}
+                  الازكار{" "}
                 </Link>
               </li>
             </ul>

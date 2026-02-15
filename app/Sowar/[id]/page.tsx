@@ -45,7 +45,7 @@ const Surah = () => {
                     href="/"
                     className="mt-6 px-6 py-3 text-lg  text-white bg-teal-600 rounded-lg hover:bg-teal-700 transition-all"
                 >
-                    العودة إلى الصفحة الرئيسية
+                    الصفحة الرئيسية
                 </Link>
             </div>
         );
@@ -73,9 +73,9 @@ const Surah = () => {
     };
 
     return (
-        <div className="mt-[10rem] w-[80%] mx-auto">
-            <div className="bg-white p-5 rounded-lg">
-                <div className="flex items-center mb-[3rem] justify-between flex-wrap">
+        <div className="mt-[5.5rem] md:mt-[7rem] mx-2 md:w-[90%] md:mx-auto">
+            <div className="bg-white p-6 rounded-lg">
+                <div className="flex items-center mb-6 justify-between flex-wrap">
                     <Link
                         onClick={(e) => {
                             if (Number(params.id) === 1) e.preventDefault();
@@ -94,7 +94,7 @@ const Surah = () => {
                     >
                         <FaArrowAltCircleRight />
                     </Link>
-                    <h1 className="text-3xl text-teal-600 sm:text-5xl">
+                    <h1 className="text-2xl md:text-3xl text-teal-600 sm:text-5xl">
                         سورة {result[0]?.name.ar}
                     </h1>
                     <Link
@@ -116,28 +116,28 @@ const Surah = () => {
                         <FaArrowAltCircleLeft />
                     </Link>
                 </div>
-                <div className="flex items-center justify-center gap-5 flex-wrap">
-                    <span className="p-3 rounded-md text-white  bg-teal-600 text-xl">
+                <div className="flex items-center justify-between gap-5 flex-wrap">
+                    <span className="p-1 md:p-3 rounded-md text-teal-600 text-md md:text-xl">
                         عدد الايات: {result[0]?.verses_count}
                     </span>
-                    <span className="p-3 rounded-md text-white  bg-teal-600 text-xl">
+                    <span className="p-1 md:p-3 rounded-md text-teal-600 text-md md:text-xl">
                         مكان النزول: {result[0]?.revelation_place?.ar}
                     </span>
-                    <span className="p-3 rounded-md text-white  bg-teal-600 text-xl">
+                    <span className="p-1 md:p-3 rounded-md text-teal-600 text-md md:text-xl">
                         رقم السورة: {result[0]?.number}
                     </span>
                 </div>
             </div>
 
-            <div className="bg-white p-5 rounded-lg my-3 text-center leading-[3rem]">
+            <div className="bg-white p-1.5 rounded-lg my-3 text-center leading-[1.5rem] md:leading-[3rem]">
                 {!data.result[0].text.ar.includes("بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ") && (
-                    <h1 className="text-teal-600 text-center text-2xl sm:text-4xl my-[3rem]">
+                    <h1 className="text-teal-600 text-center text-2xl sm:text-4xl my-[1.5rem] md:my-[3rem]">
                         بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ
                     </h1>
                 )}
 
                 {data.result.map((ayah: { number: number; text: { ar: string } }) => (
-                    <span key={ayah.number} className="text-gray-800 font-[400] leading-[1.65] text-[2.2em] ">
+                    <span key={ayah.number} className="text-gray-800 font-[400] leading-[1.7] text-[18px] md:text-[2.2em]">
                         {highlightNamesOfAllah(ayah.text.ar)}
                         <span className="text-teal-600 px-2 ">({ayah.number})</span>
                     </span>
