@@ -62,7 +62,7 @@ export function useFetchSingleSurah(params: { id: number | undefined }) {
       if (!response.ok) throw new Error("Failed to fetch single surah");
       return response.json();
     },
-    staleTime: Infinity,
-    enabled: Boolean(params.id),
+    staleTime: Infinity, 
+    enabled: Boolean(params.id), // لتجنب التنفيذ إذا لم يكن المعرف متاحًا
   });
 }

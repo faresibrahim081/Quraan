@@ -36,7 +36,7 @@ function Banner() {
     }
   };
   return (
-    <section className="shadow-lg text-right w-[70%] mb-[2rem] mx-auto rounded-lg p-11 z-10 bg-white">
+    <section className="shadow-lg text-right w-[80%] md:w-[70%] mb-[2rem] mx-auto rounded-lg p-5 z-10 bg-white">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         <div className="flex flex-col gap-3">
           <label className="text-xl font-semibold">اختر القارئ</label>
@@ -104,11 +104,14 @@ function Banner() {
           </select>
         </div>
       </div>
-      <audio ref={audioRef} controls autoPlay className="w-full mt-5">
-        <source src={newAudioUrl || ""} type="audio/ogg" />
-        <source src={newAudioUrl || ""} type="audio/mpeg" />
-        المتصفح الخاص بك لا يدعم تشغيل الصوت
-      </audio>
+      {newAudioUrl && (
+        <audio ref={audioRef} controls autoPlay className="w-full mt-5">
+          <source src={newAudioUrl} type="audio/ogg" />
+          <source src={newAudioUrl} type="audio/mpeg" />
+          المتصفح الخاص بك لا يدعم تشغيل الصوت
+        </audio>
+      )}
+
     </section>
   );
 }
