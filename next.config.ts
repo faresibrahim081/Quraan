@@ -1,10 +1,17 @@
+// import type { NextConfig } from "next";
+
+// const nextConfig: NextConfig = {
+//   swcMinify: true,
+// };
+
+// export default nextConfig;
+
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  swcMinify: true,
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
+
 
 // import withBundleAnalyzer from '@next/bundle-analyzer';
 
