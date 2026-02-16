@@ -29,6 +29,7 @@ function Video() {
             }
         }
     };
+
     return (
         <div style={{ backgroundImage: `url(/images/bg-quran-2.webp)` }}
             className="mt-[4rem] relative bg-cover bg-center bg-no-repeat py-10">
