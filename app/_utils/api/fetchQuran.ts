@@ -44,7 +44,7 @@ export function useFetchSowar() {
   return useQuery({
     queryKey: ["sowar"],
     queryFn: async () => {
-      const response = await fetch(`https://quran.i8x.net/api/surahs`);
+      const response = await fetch(`https://api.alquran.cloud/v1/surah`);
       if (!response.ok) throw new Error("Failed to fetch sowar");
       return response.json();
     },
@@ -57,7 +57,7 @@ export function useFetchSingleSurah(params: { id: number | undefined }) {
     queryFn: async () => {
       if (!params.id) return null;
       const response = await fetch(
-        `https://quran.i8x.net/api/verses?surah_id=${params.id}`
+        `https://api.alquran.cloud/v1/surah/${params.id}`
       );
       if (!response.ok) throw new Error("Failed to fetch single surah");
       return response.json();

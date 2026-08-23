@@ -29,8 +29,8 @@ function Nav() {
   ];
   return (
     <header className="text-white bg-[#32d8b78a] absolute top-0 left-0 right-0 z-50 backdrop-blur-lg">
-      <div className="px-3 md:mx-auto md:w-[90%]">
-        <div className="flex flex-row h-[75px] items-center justify-between">
+      <div className="px-3 md:mx-auto md:w-[80%]">
+        <div className="flex flex-row-reverse h-[75px] items-center justify-between">
           <div className="md:flex md:items-center md:gap-12">
             <Link className="block text-teal-600" href="/">
               <span className="sr-only">Home</span>
@@ -54,9 +54,9 @@ function Nav() {
             {toggle && (
               <div
                 className="
-                  md:hidden absolute top-[4rem] left-[1rem] w-[70%]
+                  md:hidden absolute top-[4rem] right-[1rem] w-[70%]
                   bg-white/95 backdrop-blur-md
-                  rounded-3xl rounded-tl-none rounded-br-none shadow-xl border border-gray-200
+                  rounded-3xl rounded-tr-none rounded-bl-none shadow-xl border border-gray-200
                   p-4 flex flex-col gap-3
                   animate-dropdown
                   z-50

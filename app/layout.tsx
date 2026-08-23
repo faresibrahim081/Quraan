@@ -10,7 +10,7 @@ import Nav from "./components/Navbar/Nav";
 
 export const metadata: Metadata = {
   title: "القرآن الكريم",
-  description: "منصة متكاملة لقراءة القرآن الكريم والاستماع إليه بقراءات متعددة، مع واجهة بسيطة وتجربة روحانية مميزة.",
+  description: "القرآن الكريم بقراءات متعددة",
   manifest: "/manifest.json",
   icons: {
     icon: "/favicon.png",
